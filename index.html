@@ -41,15 +41,19 @@
         {                        
             var destinationUrl = url;
             $.ajax({
-            type: 'GET',
-            url: destinationUrl,
-            dataType: 'json', // use json only, not jsonp
-            crossDomain: true, // tell browser to allow cross domain
-            xhrFields: {
-                'withCredentials': true // tell the client to send the cookies if any for the requested domain
-            },
-            success: successResopnse,
-            error: failureFunction
+                type: 'GET',
+                url: destinationUrl,
+                dataType: 'json', // use json only, not jsonp
+                crossDomain: true, // tell browser to allow cross domain
+                xhrFields: {
+                    'withCredentials': true // tell the client to send the cookies if any for the requested domain
+                },
+                success: function(data){
+                    alert(data);
+                },
+                error: function(data){
+                    alert(data);
+                }
             });
         }
   
