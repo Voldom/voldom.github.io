@@ -38,22 +38,29 @@
         }   
 
         function QueryMarket(url) 
-        {            
-            var xhr = new XMLHttpRequest();
-            xhr.addEventListener('load', function(e) {
-            var response = e.target.responseText;
-                return response;
+        {                        
+            var destinationUrl = url;
+            $.ajax({
+            type: 'GET',
+            url: destinationUrl,
+            dataType: 'json', // use json only, not jsonp
+            crossDomain: true, // tell browser to allow cross domain
+            xhrFields: {
+                'withCredentials': true // tell the client to send the cookies if any for the requested domain
+            },
+            success: successResopnse,
+            error: failureFunction
             });
-            xhr.addEventListener('error', function(e) {
-                console.error('Request error with status', e.target.status);
-            });
-            xhr.open('GET', url);
-            
-            xhr.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
-            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-            
-            xhr.send();
-        }     
+        }
+  
+        successResponse = function(data) {
+            alert(data);
+        }
+
+        failureFunction = function(data) {
+            alert("no funciona");
+        }
+
     </script>
     <style type="text/css">
         body {
